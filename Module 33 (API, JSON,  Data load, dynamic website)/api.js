@@ -16,6 +16,7 @@ function getData(data) {
         const li = document.createElement('li');
         li.classList.add('li');
         const name = document.createElement('h3');
+        name.classList.add('h3');
         name.innerText = user.name;
         li.innerHTML = user.email;
         ul.appendChild(li);
