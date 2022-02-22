@@ -1,0 +1,11 @@
+.div {
+    border-radius: 15px;
+    background-color: rgba(119, 232, 252, 0.616);
+    padding: 30px;
+    margin-top: 10px;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10px !important;
+    /* display: flex; */
+}
