@@ -1,5 +1,5 @@
 const loadBuddies = () => {
-    fetch('https://randomuser.me/api/?results=100')
+    fetch('https://randomuser.me/api/?results=1000')
         .then(res => res.json())
         .then(data => displayBuddies(data))
 };
