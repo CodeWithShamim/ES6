@@ -7,7 +7,9 @@ const loadCountries = () => {
 loadCountries();
 const displayCountries = (countries) => {
     const div = document.getElementById('countries');
+
     countries.forEach(country => {
+
         const div2 = document.createElement('div');
         div2.classList.add('div');
 
@@ -26,13 +28,12 @@ const displayCountries = (countries) => {
             div2.appendChild(p);
         }
 
-
-
-
         div.appendChild(div2);
 
-
-
-
     });
+
+    // const getDetails = getName => {
+    //     console.log(getName);
+    // }
+
 };
