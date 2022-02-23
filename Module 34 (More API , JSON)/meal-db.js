@@ -16,13 +16,10 @@ const search = () => {
     const getData = data => {
         const rowParent = document.getElementById('row-parent');
         for (const meal of data.meals) {
-            console.log(meal.strCategory);
-            console.log(meal.strMealThumb);
-
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
-                <div class="card">
+                <div onclick="loadFoodDetails(${meal.idMeal})" class="card">
                     <img src="${meal.strMealThumb}" class="card-img-top" alt="..." />
                     <div class="card-body">
                         <h5 class="card-title">${meal.strMeal}</h5>
@@ -34,6 +31,10 @@ const search = () => {
               `;
 
             rowParent.appendChild(div);
+        }
+
+        const loadFoodDetails = id => {
+            console.log(id);
         }
     }
 }
