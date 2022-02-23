@@ -32,9 +32,34 @@ const search = () => {
 
             rowParent.appendChild(div);
         }
-
-        const loadFoodDetails = id => {
-            console.log(id);
-        }
     }
+}
+
+const loadFoodDetails = id => {
+    detaiilsUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
+    fetch(detaiilsUrl)
+        .then(res => res.json())
+        .then(data => getDetailsData(data))
+}
+
+const getDetailsData = data => {
+    const meals = data.meals[0];
+    const mealsDetails = document.getElementById('meals-details');
+
+    const div = document.createElement('div');
+    div.classList.add('card');
+    mealsDetails.innerHTML = `
+            <img  src="${meals.strMealThumb}" class=" rounded img-fluid card-img-top" alt="..." />
+            <div class="card-body">    
+                <div class="text-center">
+                <h5 class="card-title">${meals.strMeal}</h5>
+                <p class="card-text">
+                ${meals.strInstructions.slice(0,500)}
+                </p>
+                <a href="${meals.strYoutube}" class=" btn btn-primary ">MORE DETAILS</a>
+                </div>
+            </div>
+    `;
+
+    mealsDetails.appendChild(div);
 }
