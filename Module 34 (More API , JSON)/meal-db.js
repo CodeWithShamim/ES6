@@ -1,21 +1,52 @@
+const errorMessage = document.getElementById('error-msg');
+errorMessage.style.display = 'none';
+
+
 const search = () => {
     const inputField = document.getElementById('input-field');
     const inputFieldValue = inputField.value;
     inputField.value = "";
+    if (inputFieldValue == '') {
+        alert('PLease!! insert a value!')
+    }
 
 
     // fetch data 
-    const mealUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
-    const loadData = () => {
-        fetch(mealUrl)
-            .then(res => res.json())
-            .then(data => getData(data))
-    };
-    loadData();
+    // const mealUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
+    // const loadData = () => {
+    //     fetch(mealUrl)
+    //         .then(res => res.json())
+    //         .then(data => getData(data))
+    // };
+
+    // use async await ---------------
+    else {
+        const mealUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
+        const loadData = async() => {
+            const res = await fetch(mealUrl);
+            const data = await res.json();
+            getData(data);
+        };
+
+        loadData();
+    }
 
     const getData = data => {
         const rowParent = document.getElementById('row-parent');
-        for (const meal of data.meals) {
+        // remove previous data 
+        // rowParent.innerHTML = '';
+        rowParent.textContent = '';
+        try {
+            d = data.meals
+
+        } catch {
+
+            errorMessage.style.display = 'block';
+        }
+
+
+        for (const meal of d) {
+
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
@@ -45,6 +76,7 @@ const loadFoodDetails = id => {
 const getDetailsData = data => {
     const meals = data.meals[0];
     const mealsDetails = document.getElementById('meals-details');
+    mealsDetails.textContent = '';
 
     const div = document.createElement('div');
     div.classList.add('card');
