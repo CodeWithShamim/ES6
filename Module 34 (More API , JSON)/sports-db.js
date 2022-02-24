@@ -1,10 +1,15 @@
 const errorMessage = document.getElementById('error-msg');
 errorMessage.style.display = 'none';
+const spinner = document.getElementById('spinner');
+spinner.style.display = 'none'
+
+
 
 const search = () => {
     const inputField = document.getElementById('input-field');
     const inputFieldValue = inputField.value;
     inputField.value = "";
+    spinner.style.display = 'block'
     if (inputFieldValue == '') {
         alert('PLease!! insert a value!')
     } else {
@@ -14,6 +19,7 @@ const search = () => {
             .then(data => displayPlayer(data))
             .catch(error => {
                 errorMessage.style.display = 'block';
+                spinner.style.display = 'none'
             })
 
     }
@@ -60,5 +66,8 @@ const search = () => {
             rowParent.appendChild(div);
 
         }
+        spinner.style.display = 'none'
+
     }
+
 }
