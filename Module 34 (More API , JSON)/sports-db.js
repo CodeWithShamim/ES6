@@ -12,6 +12,7 @@ const search = () => {
     spinner.style.display = 'block'
     if (inputFieldValue == '') {
         alert('PLease!! insert a value!')
+        spinner.style.display = 'none'
     } else {
         const url = `https://www.thesportsdb.com/api/v1/json/2/searchplayers.php?p=${inputFieldValue}`;
         fetch(url)
