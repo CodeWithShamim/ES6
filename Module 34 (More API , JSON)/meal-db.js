@@ -23,9 +23,14 @@ const search = () => {
     else {
         const mealUrl = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputFieldValue}`;
         const loadData = async() => {
-            const res = await fetch(mealUrl);
-            const data = await res.json();
-            getData(data);
+            try {
+                const res = await fetch(mealUrl);
+                const data = await res.json();
+                getData(data);
+            } catch {
+
+                errorMessage.style.display = 'block';
+            }
         };
 
         loadData();
@@ -36,16 +41,10 @@ const search = () => {
         // remove previous data 
         // rowParent.innerHTML = '';
         rowParent.textContent = '';
-        try {
-            d = data.meals
-
-        } catch {
-
-            errorMessage.style.display = 'block';
-        }
+        errorMessage.style.display = 'none';
 
 
-        for (const meal of d) {
+        for (const meal of data.meals) {
 
             const div = document.createElement('div');
             div.classList.add('col');
@@ -71,6 +70,7 @@ const loadFoodDetails = id => {
     fetch(detaiilsUrl)
         .then(res => res.json())
         .then(data => getDetailsData(data))
+        .catch(errorMsg => alert('Sorry!! some problem.......'));
 }
 
 const getDetailsData = data => {
