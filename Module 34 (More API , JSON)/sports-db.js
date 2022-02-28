@@ -4,6 +4,7 @@ errorMessage.style.display = 'none';
 const spinner = document.getElementById('spinner');
 spinner.style.display = 'none';
 
+
 // spinner-------------------------------
 const addSpinner = (text) => {
     spinner.style.display = text;
@@ -17,15 +18,14 @@ const removeParent = () => {
 
 // pre-loader-----------------------
 window.onload = function() {
-
     setTimeout(function() {
         const preLoader = document.getElementById('pre-loader');
         preLoader.style.display = 'none';
+
     }, 2000);
+
+
 }
-
-
-
 
 
 const search = () => {
