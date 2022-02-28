@@ -1,15 +1,30 @@
 const errorMessage = document.getElementById('error-msg');
 errorMessage.style.display = 'none';
+// spinner 
 const spinner = document.getElementById('spinner');
-spinner.style.display = 'none'
+spinner.style.display = 'none';
+
+// spinner-------------------------------
+const addSpinner = (text) => {
+    spinner.style.display = text;
+}
+
+// remove parent item-----------
+const removeParent = () => {
+    const rowParent = document.getElementById('row-parent');
+    rowParent.textContent = "";
+}
 
 // pre-loader-----------------------
 window.onload = function() {
+
     setTimeout(function() {
-        const spinner = document.getElementById('spinner');
-        spinner.style.display = 'none'
+        const preLoader = document.getElementById('pre-loader');
+        preLoader.style.display = 'none';
     }, 2000);
 }
+
+
 
 
 
@@ -17,7 +32,13 @@ const search = () => {
     const inputField = document.getElementById('input-field');
     const inputFieldValue = inputField.value;
     inputField.value = "";
-    spinner.style.display = 'block'
+
+    // add spinner 
+    addSpinner('block');
+    // remove parent 
+    removeParent()
+
+
     if (inputFieldValue == '') {
         alert('PLease!! insert a value!')
         spinner.style.display = 'none'
@@ -36,7 +57,9 @@ const search = () => {
     const displayPlayer = players => {
         const rowParent = document.getElementById('row-parent');
         errorMessage.style.display = 'none';
-        rowParent.textContent = "";
+        // remove parent 
+        removeParent()
+
         for (const player of players.player) {
             const div = document.createElement('div');
             div.classList.add('col');
@@ -57,7 +80,9 @@ const search = () => {
             rowParent.appendChild(div);
 
         }
-        spinner.style.display = 'none'
+
+        // add spinner 
+        addSpinner('none')
 
     }
 
